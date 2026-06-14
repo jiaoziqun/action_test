@@ -16,7 +16,7 @@ jobs:
       - name: 设置python
         uses: actions/setup-python@v5
         with:
-          python-versions: '3.12'
+          python-version: '3.12'
       
       - name: 打印当前地址
         run: |
