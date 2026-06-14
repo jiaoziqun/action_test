@@ -23,7 +23,13 @@ jobs:
           pwd
           ls
       
-      - name: 运行测试代码
+      - name: 运行代码
         run: |
           python --version
           python ./git_action_test.py
+      
+      - name: 安装环境
+        run: python -m pip install pytest
+
+      - name: 运行测试
+        run: python -m  pytest ./test_calculate.py -v
