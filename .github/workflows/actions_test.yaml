@@ -1,0 +1,29 @@
+name: git_Actions学习
+
+on: 
+  push:
+    branches: [main]
+
+jobs:
+  actions_test:
+    name: 输出计算类示例打印结果
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 读取仓库内容QAQ
+        uses: actions/checkout@v4
+      
+      - name: 设置python
+        uses: actions/setup-python@v5
+        with:
+          python-versions: '3.12'
+      
+      - name: 打印当前地址
+        run: |
+          pwd
+          ls
+      
+      - name: 运行测试代码
+        run: |
+          python --version
+          python ./git_action_test.py
