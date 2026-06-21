@@ -23,6 +23,16 @@ def test_div():
     assert calc.Div() == 2.0
 
 
+def test_power():
+    calc = calculate(10, 5)
+    assert calc.power() == 100000
+
+
+def test_power_by_zero():
+    calc = calculate(10, 0)
+    assert calc.power() == 1
+
+
 def test_div_by_zero():
     calc = calculate(10, 0)
     with pytest.raises(ZeroDivisionError):
