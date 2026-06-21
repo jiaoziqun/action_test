@@ -1,7 +1,10 @@
 name: git_Actions学习
 
-on: 
-  push
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   actions_test:
