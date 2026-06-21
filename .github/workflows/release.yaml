@@ -9,7 +9,7 @@ jobs:
   test:
     name: 代码检查与测试
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -37,7 +37,7 @@ jobs:
         run: pip install pyinstaller
       
       - name: 编译为可执行文件
-        run: python -m pyinstaller --onefile git_action_test.py
+        run: pyinstaller --onefile git_action_test.py
       
       - name: 发布到Release
         uses: softprops/action-gh-release@v2
