@@ -1,0 +1,45 @@
+name: 将代码编译为可执行文件
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  test:
+    name: 代码检查与测试
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pytest ruff
+      - run: ruff check .
+      - run: python -m pytest ./test_calculate.py -v
+
+  pyinstaller:
+    name: 编译为可执行文件
+    needs: test
+    runs-on: windows-latest
+    
+    steps:
+      - name: 读取仓库内容QAQ
+        uses: actions/checkout@v4
+    
+      - name: 安装python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      
+      - name: 安装pyinstaller
+        run: pip install pyinstaller
+      
+      - name: 编译为可执行文件
+        run: python -m pyinstaller --onefile git_action_test.py
+      
+      - name: 发布到Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/git_action_test.exe 
